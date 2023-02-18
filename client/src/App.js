@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import GitListing from './components/GitListing';
+import HomePage from './components/HomePage';
 
 class App extends Component {
 
@@ -9,7 +10,7 @@ class App extends Component {
         return (
             <Router>
                 <Routes>
-                    <Route exact path='/' exact element={<div><p>Hello</p></div>} />
+                    <Route exact path='/' exact element={ <HomePage/> } />
                     <Route path='/git' element={ <GitListing/> } />
                 </Routes>
             </Router>
