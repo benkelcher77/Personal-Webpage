@@ -1,31 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
+import GitListing from './components/GitListing';
 
-    const [backendData, setBackendData] = useState([{}]);
-    useEffect(() => {
-        fetch("/git").then(
-            response => response.json()
-        ).then(
-            data => {
-                setBackendData(data)
-            }
-        )
-    }, []);
+class App extends Component {
 
-    return (
-        <div>
-            {
-                (typeof backendData === "undefined") 
-                ? (<p>Loading...</p>)
-                : (
-                    backendData.map((repo, i) => {
-                        return (<p key={i}>{repo.name}</p>);
-                    })
-                )
-            } 
-        </div>
-    );
+    render() {
+        return (
+            <Router>
+                <Routes>
+                    <Route exact path='/' exact element={<div><p>Hello</p></div>} />
+                    <Route path='/git' element={ <GitListing/> } />
+                </Routes>
+            </Router>
+        );
+    }
 }
 
 export default App;
