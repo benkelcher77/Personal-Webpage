@@ -4,7 +4,7 @@ function App() {
 
     const [backendData, setBackendData] = useState([{}]);
     useEffect(() => {
-        fetch("/api").then(
+        fetch("/git").then(
             response => response.json()
         ).then(
             data => {
@@ -16,11 +16,11 @@ function App() {
     return (
         <div>
             {
-                (typeof backendData.users === "undefined") 
+                (typeof backendData === "undefined") 
                 ? (<p>Loading...</p>)
                 : (
-                    backendData.users.map((user, i) => {
-                        return (<p key={i}>{user}</p>);
+                    backendData.map((repo, i) => {
+                        return (<p key={i}>{repo.name}</p>);
                     })
                 )
             } 
