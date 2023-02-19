@@ -34,12 +34,16 @@ class GitRepo extends Component {
         this.repo = props.repo
     }
 
-    onClick() {
+    toggleDetailedView() {
         this.setState({ detailedView: !this.state.detailedView });
     }
 
-    toggleHover() {
-        this.setState({ hover: !this.state.hover });
+    onMouseEnterDiv() {
+        this.setState({ hover: true });
+    }
+
+    onMouseExitDiv() {
+        this.setState({ hover: false });
     }
 
     render() {
@@ -48,16 +52,27 @@ class GitRepo extends Component {
         let updatedTimeString = updatedDateTime.toTimeString();
 
         return (
-            <div style={(this.state.hover) ? GitRepo.hoverStyle : GitRepo.normalStyle} 
-                onMouseEnter={() => this.toggleHover()}
-                onMouseLeave={() => this.toggleHover()}
+            <div 
+                style={(this.state.hover) ? GitRepo.hoverStyle : GitRepo.normalStyle} 
+                onMouseEnter={() => this.onMouseEnterDiv()}
+                onMouseLeave={() => this.onMouseExitDiv()}
             >
-                <button style={GitRepo.buttonStyle} onClick={() => this.onClick()}><h3>{this.repo.name}</h3></button>
+                <button style={GitRepo.buttonStyle} onClick={() => this.toggleDetailedView()}><h3>{this.repo.name}</h3></button>
                 {
                     (this.state.detailedView) && 
                     (
                         <div>
-                            <p>Updated {updatedDateString} at {updatedTimeString}</p>
+                            <p>
+                                Updated {updatedDateString} at {updatedTimeString}
+                                <a href={`https://www.github.com/benkelcher77/${this.repo.name}`}>
+                                    <img 
+                                        style={{padding: "10px", float: "left"}} 
+                                        src={process.env.PUBLIC_URL + "/icons/icons8-github.svg"} 
+                                        alt="Github Page" 
+                                        title="Github Page"
+                                    />
+                                </a>
+                            </p>
                         </div>
                     )
                 }
@@ -68,6 +83,12 @@ class GitRepo extends Component {
 }
 
 export default class GitListing extends Component {
+
+    static divStyle = {
+        backgroundColor: "midnightblue",
+        color: "white",
+        padding: "10px"
+    };
 
     state = {
         repos: []
@@ -82,9 +103,10 @@ export default class GitListing extends Component {
     }
 
     render() {
-
         return (
-            <div>
+            <div style={GitListing.divStyle}>
+                <h1 style={{textAlign: "center"}}>Software Projects</h1>
+                <hr style={{width: "50%"}}/>
                 {
                     (this.state.repos.length == 0) 
                     ? (<p>Loading...</p>)
