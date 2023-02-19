@@ -1,9 +1,13 @@
 const express = require('express');
+const https = require('node:https');
+const apicache = require('apicache');
+
 const app = express()
 
-const https = require('node:https');
-
 require('dotenv').config()
+
+let cache = apicache.middleware
+app.use(cache("5 minutes"))
 
 app.get("/git", (req, res) => {
     https_request = https.get({
@@ -19,7 +23,6 @@ app.get("/git", (req, res) => {
         console.log(e);
         res.status(500).send("Something went wrong!");
     });
-
 });
 
 app.get("/api", (req, res) => {
