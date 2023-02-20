@@ -38,14 +38,16 @@ class ProjectShowcase extends Component {
 
     render() {
         return (
+            <div>
                 <a href={this.state.link}>
                     <div onMouseEnter={() => this.onMouseEnter()} onMouseLeave={() => this.onMouseExit()}>
                         <img 
                             style={(this.state.hover) ? ProjectShowcase.hoverStyle : ProjectShowcase.normalStyle} 
                             src={this.state.image} alt="IMAGE_NOT_FOUND" />
-                        <h4 style={{textAlign: "center"}}>{this.state.text}</h4>
                     </div>
                 </a>
+                <h4 style={{textAlign: "center"}}>{this.state.text}</h4>
+            </div>
         );
     }
 }
@@ -114,9 +116,9 @@ export default class HomePage extends Component {
                     gridTemplateColumns: "1fr 1fr 1fr",
                     textAlign: "center"
                 }}>
-                    <ProjectShowcase text="Paintball" image={process.env.PUBLIC_URL + "/images/PaintballScreenshot00.png"} link="/" />
-                    <ProjectShowcase text="Terminal File System" image={process.env.PUBLIC_URL + "/images/PaintballScreenshot00.png"} link="/" />
-                    <ProjectShowcase text="Personal Webpage" image={process.env.PUBLIC_URL + "/images/PaintballScreenshot00.png"} link="/" />
+                    <ProjectShowcase text="Paintball" image={process.env.PUBLIC_URL + "/images/PaintballScreenshot00.png"} link="/projects-paintball/" />
+                    <ProjectShowcase text="Terminal File System" image={process.env.PUBLIC_URL + "/images/PaintballScreenshot00.png"} link="/projects-tfs/" />
+                    <ProjectShowcase text="Personal Webpage" image={process.env.PUBLIC_URL + "/images/PaintballScreenshot00.png"} link="/projects-personal-website/" />
                 </div>
             </div>
         );
