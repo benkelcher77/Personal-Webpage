@@ -7,7 +7,7 @@ const app = express()
 require('dotenv').config()
 
 let cache = apicache.middleware
-app.use(cache("5 minutes"))
+app.use("/git", cache("5 minutes")) // Add 5-minute caching to Git API call.
 
 app.get("/git", (req, res) => {
     https_request = https.get({
