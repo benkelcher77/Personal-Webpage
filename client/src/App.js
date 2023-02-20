@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import GitListing from './components/GitListing';
-import HomePage from './components/HomePage';
+import GitListing from './pages/GitListing';
+import HomePage from './pages/HomePage';
 
 class App extends Component {
 
